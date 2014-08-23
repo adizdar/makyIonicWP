@@ -1,0 +1,16 @@
+﻿/*HEADER STYLE*/
+header {
+    padding: 0 !important;
+    border-bottom: 1px solid #308980; 
+    background-color: white;
+}
+
+header#homePg > h2 {
+    padding: 0.4em 0 0 0;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 1.6em;
+    color: #308980;
+}
+
+/*header style END*/

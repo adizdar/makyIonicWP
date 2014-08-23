@@ -1,0 +1,63 @@
+﻿div.home {
+    height: 100%;
+}
+
+    /***HEADER***/
+
+    div.home > div.ionic-logo {
+        width: 15%;
+        position: absolute;
+        right: 0;
+    }
+
+    /**END header**/
+
+    /***LOGO & TITLE***/
+
+    div.home > div.logo {
+        width: 45%;
+        margin: auto;
+        padding-top: 22%;
+    }
+
+        div.home > div.logo > img {
+            border: none;
+        }
+
+    div.home > div.home-title {
+        color: white;
+        font-size: 1.8em;
+        margin: auto;
+        padding-top: 5%;
+        opacity: 0.7;
+    }
+
+        div.home > div.home-title > p {
+            text-align: center;
+            padding-right: 0.8em;
+        }
+
+    /****END logo & title***/
+
+    /***BUTTON***/
+
+    div.home > div.btn-grp {
+        position: absolute;
+        bottom: 8%;
+        padding: 0;
+    }
+
+        div.home > div.btn-grp > div.col {
+            padding: 0;
+        }
+
+            div.home > div.btn-grp > div.col > a {
+                height: 3em;
+                border: none;
+                padding: 0.6em 0 0 0;
+                font-size: 1.6em;
+                opacity: 0.5;
+                color: #819ea0;
+            }
+
+/***END button***/
