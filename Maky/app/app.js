@@ -20,7 +20,7 @@ angular.module('maky', ['ionic'])
     .state('project.todo', {
         url: '/todo',
         views: {
-            'tabContent@project': {
+            '@project': {
                 templateUrl: "app/View/todo/todo.html"
             }
         }

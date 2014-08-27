@@ -1,20 +1,42 @@
 ﻿<!-- HEADER -->
-<div class="bar bar-header bar-light">
+<!--<div class="bar bar-header bar-light">
     <a href="#" class="button button-icon icon ion-ios7-undo"></a>
     <h1 class="title">bar-light</h1>
-</div>
+</div>-->
 
-<!--Result for tab content  -->
-<div ui-view="tabContent"></div>
+<ion-view title="myTitle">
+    <ion-nav-bar class="bar-positive">
+        <ion-nav-back-button>
+            Back
+        </ion-nav-back-button>
+        <div class="buttons right-buttons">
+            <button class="button">
+                Right Button
+            </button>
+        </div>
+    </ion-nav-bar>
+    <!--Result for tab content  -->
+    <div ui-view="tabContent"></div>
+    <ion-nav-view animation="slide-left-right" class="ui-view-default">
 
-<!-- FOOTER tab menu -->
-<div class="tabs">
-    <a class="tab-item" href="#/project/todo"> Home
-    </a>
-    <a class="tab-item">
-        Favorites
-    </a>
-    <a class="tab-item">
-        Settings
-    </a>
-</div>
+        <!-- FOOTER tab menu -->
+        <ion-tabs class="tabs-positive tabs-icon-only">
+
+            <ion-tab title="Home" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline">
+                <!-- Tab 1 content -->
+            </ion-tab>
+
+            <ion-tab title="About" icon-on="ion-ios7-clock" icon-off="ion-ios7-clock-outline">
+                <!-- Tab 2 content -->
+            </ion-tab>
+
+            <ion-tab title="Settings" icon-on="ion-ios7-gear" icon-off="ion-ios7-gear-outline">
+                <!-- Tab 3 content -->
+            </ion-tab>
+
+        </ion-tabs>
+
+
+</ion-view>
+
+
