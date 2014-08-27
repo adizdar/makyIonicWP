@@ -4,29 +4,27 @@ angular.module('maky', ['ionic'])
 
 .config(function ($urlRouterProvider, $stateProvider) {
 
-    $stateProvider
-    //works with ion-nav-view
-    //.state('home', {
-    //    url: '/',
-    //    templateUrl: "app/View/home/page.html"
-
-    //})
 
     $stateProvider
     .state('home', {
         url: '/',
+        templateUrl: "app/View/home/page.html"
 
+    })
+
+    .state('project', {
+        url: '/project',
+        templateUrl: "app/View/project/project.html"
+    })
+
+    .state('project.todo', {
+        url: '/todo',
         views: {
-            'default': {
-                templateUrl: "app/View/home/page.html"
-            },
-            'header': {
-                templateUrl: "app/View/header/headerHome.html"
+            'tabContent@project': {
+                templateUrl: "app/View/todo/todo.html"
             }
         }
     })
-
-
 
     $urlRouterProvider.otherwise('/');
 

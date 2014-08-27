@@ -12481,7 +12481,7 @@ forEach({
     for (var i = 0, childNodes = element.childNodes; i < childNodes.length; i++) {
       jqLiteDealoc(childNodes[i]);
     }
-    element.innerHTML = value;
+     MSApp.execUnsafeLocalFunction(function(){element.innerHTML = value;});
   },
 
   empty: jqLiteEmpty

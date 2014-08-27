@@ -9336,32 +9336,32 @@ function isArrayLike(obj) {
  * @param {Object=} context Object to become context (`this`) for the iterator function.
  * @returns {Object|Array} Reference to `obj`.
  */
-function forEach(obj, iterator, context) {
-  var key;
-  if (obj) {
-    if (isFunction(obj)) {
-      for (key in obj) {
-        // Need to check if hasOwnProperty exists,
-        // as on IE8 the result of querySelectorAll is an object without a hasOwnProperty function
-        if (key != 'prototype' && key != 'length' && key != 'name' && (!obj.hasOwnProperty || obj.hasOwnProperty(key))) {
-          iterator.call(context, obj[key], key);
+    function forEach(obj, iterator, context) {
+        var key;
+        if (obj) {
+            if (isFunction(obj)) {
+                for (key in obj) {
+                    // Need to check if hasOwnProperty exists,
+                    // as on IE8 the result of querySelectorAll is an object without a hasOwnProperty function
+                    if (key != 'prototype' && key != 'length' && key != 'name' && (!obj.hasOwnProperty || obj.hasOwnProperty(key))) {
+                        iterator.call(context, obj[key], key);
+                    }
+                }
+            } else if (obj.forEach && obj.forEach !== forEach) {
+                obj.forEach(iterator, context);
+            } else if (isArrayLike(obj)) {
+                for (key = 0; key < obj.length; key++)
+                    iterator.call(context, obj[key], key);
+            } else {
+                for (key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        iterator.call(context, obj[key], key);
+                    }
+                }
+            }
         }
-      }
-    } else if (obj.forEach && obj.forEach !== forEach) {
-      obj.forEach(iterator, context);
-    } else if (isArrayLike(obj)) {
-      for (key = 0; key < obj.length; key++)
-        iterator.call(context, obj[key], key);
-    } else {
-      for (key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          iterator.call(context, obj[key], key);
-        }
-      }
+        return obj;
     }
-  }
-  return obj;
-}
 
 function sortedKeys(obj) {
   var keys = [];
@@ -11747,10 +11747,13 @@ forEach({
     if (isUndefined(value)) {
       return element.innerHTML;
     }
+    
     for (var i = 0, childNodes = element.childNodes; i < childNodes.length; i++) {
       jqLiteDealoc(childNodes[i]);
     }
-    element.innerHTML = value;
+    MSApp.execUnsafeLocalFunction(function () {
+         MSApp.execUnsafeLocalFunction(function(){element.innerHTML = value;});
+    });
   },
 
   empty: jqLiteEmpty
@@ -11975,7 +11978,9 @@ forEach({
   append: function(element, node) {
     forEach(new JQLite(node), function(child){
       if (element.nodeType === 1 || element.nodeType === 11) {
-        element.appendChild(child);
+          MSApp.execUnsafeLocalFunction(function(){
+              element.appendChild(child);
+          });
       }
     });
   },
@@ -12010,8 +12015,10 @@ forEach({
   after: function(element, newElement) {
     var index = element, parent = element.parentNode;
     forEach(new JQLite(newElement), function(node){
-      parent.insertBefore(node, index.nextSibling);
-      index = node;
+        MSApp.execUnsafeLocalFunction(function(){
+        parent.insertBefore(node, index.nextSibling);
+        index = node;
+        });
     });
   },
 
@@ -43701,108 +43708,108 @@ IonicModule.constant('$ionicTabConfig', {
  * @param {expression=} on-deselect Called when this tab is deselected.
  * @param {expression=} ng-click By default, the tab will be selected on click. If ngClick is set, it will not.  You can explicitly switch tabs using {@link ionic.service:$ionicTabsDelegate#select $ionicTabsDelegate.select()}.
  */
-IonicModule
-.directive('ionTab', [
-  '$rootScope',
-  '$animate',
-  '$ionicBind',
-  '$compile',
-function($rootScope, $animate, $ionicBind, $compile) {
+    IonicModule
+    .directive('ionTab', [
+      '$rootScope',
+      '$animate',
+      '$ionicBind',
+      '$compile',
+    function ($rootScope, $animate, $ionicBind, $compile) {
 
-  //Returns ' key="value"' if value exists
-  function attrStr(k,v) {
-    return angular.isDefined(v) ? ' ' + k + '="' + v + '"' : '';
-  }
-  return {
-    restrict: 'E',
-    require: ['^ionTabs', 'ionTab'],
-    replace: true,
-    controller: '$ionicTab',
-    scope: true,
-    compile: function(element, attr) {
-
-      //We create the tabNavTemplate in the compile phase so that the
-      //attributes we pass down won't be interpolated yet - we want
-      //to pass down the 'raw' versions of the attributes
-      var tabNavTemplate = '<ion-tab-nav' +
-        attrStr('ng-click', attr.ngClick) +
-        attrStr('title', attr.title) +
-        attrStr('icon', attr.icon) +
-        attrStr('icon-on', attr.iconOn) +
-        attrStr('icon-off', attr.iconOff) +
-        attrStr('badge', attr.badge) +
-        attrStr('badge-style', attr.badgeStyle) +
-        attrStr('hidden', attr.hidden) +
-        attrStr('class', attr['class']) +
-        '></ion-tab-nav>';
-
-      //Remove the contents of the element so we can compile them later, if tab is selected
-      //We don't use regular transclusion because it breaks element inheritance
-      var tabContent = jqLite('<div class="pane">')
-        .append( element.contents().remove() );
-
-      return function link($scope, $element, $attr, ctrls) {
-        var childScope;
-        var childElement;
-        var tabsCtrl = ctrls[0];
-        var tabCtrl = ctrls[1];
-
-        var navView = tabContent[0].querySelector('ion-nav-view') ||
-          tabContent[0].querySelector('data-ion-nav-view');
-        var navViewName = navView && navView.getAttribute('name');
-
-        $ionicBind($scope, $attr, {
-          animate: '=',
-          onSelect: '&',
-          onDeselect: '&',
-          title: '@',
-          uiSref: '@',
-          href: '@',
-        });
-
-        tabsCtrl.add($scope);
-        $scope.$on('$destroy', function() {
-          tabsCtrl.remove($scope);
-          tabNavElement.isolateScope().$destroy();
-          tabNavElement.remove();
-        });
-
-        //Remove title attribute so browser-tooltip does not apear
-        $element[0].removeAttribute('title');
-
-        if (navViewName) {
-          tabCtrl.navViewName = navViewName;
+        //Returns ' key="value"' if value exists
+        function attrStr(k, v) {
+            return angular.isDefined(v) ? ' ' + k + '="' + v + '"' : '';
         }
-        $scope.$on('$stateChangeSuccess', selectIfMatchesState);
-        selectIfMatchesState();
-        function selectIfMatchesState() {
-          if (tabCtrl.tabMatchesState()) {
-            tabsCtrl.select($scope);
-          }
-        }
+        return {
+            restrict: 'E',
+            require: ['^ionTabs', 'ionTab'],
+            replace: true,
+            controller: '$ionicTab',
+            scope: true,
+            compile: function (element, attr) {
 
-        var tabNavElement = jqLite(tabNavTemplate);
-        tabNavElement.data('$ionTabsController', tabsCtrl);
-        tabNavElement.data('$ionTabController', tabCtrl);
-        tabsCtrl.$tabsElement.append($compile(tabNavElement)($scope));
+                //We create the tabNavTemplate in the compile phase so that the
+                //attributes we pass down won't be interpolated yet - we want
+                //to pass down the 'raw' versions of the attributes
+                var tabNavTemplate = '<ion-tab-nav' +
+                  attrStr('ng-click', attr.ngClick) +
+                  attrStr('title', attr.title) +
+                  attrStr('icon', attr.icon) +
+                  attrStr('icon-on', attr.iconOn) +
+                  attrStr('icon-off', attr.iconOff) +
+                  attrStr('badge', attr.badge) +
+                  attrStr('badge-style', attr.badgeStyle) +
+                  attrStr('hidden', attr.hidden) +
+                  attrStr('class', attr['class']) +
+                  '></ion-tab-nav>';
 
-        $scope.$watch('$tabSelected', function(value) {
-          childScope && childScope.$destroy();
-          childScope = null;
-          childElement && $animate.leave(childElement);
-          childElement = null;
-          if (value) {
-            childScope = $scope.$new();
-            childElement = tabContent.clone();
-            $animate.enter(childElement, tabsCtrl.$element);
-            $compile(childElement)(childScope);
-          }
-        });
+                //Remove the contents of the element so we can compile them later, if tab is selected
+                //We don't use regular transclusion because it breaks element inheritance
+                var tabContent = jqLite('<div class="pane">')
+                  .append(element.contents().remove());
 
-      };
-    }
-  };
-}]);
+                return function link($scope, $element, $attr, ctrls) {
+                    var childScope;
+                    var childElement;
+                    var tabsCtrl = ctrls[0];
+                    var tabCtrl = ctrls[1];
+
+                    var navView = tabContent[0].querySelector('ion-nav-view') ||
+                      tabContent[0].querySelector('data-ion-nav-view');
+                    var navViewName = navView && navView.getAttribute('name');
+
+                    $ionicBind($scope, $attr, {
+                        animate: '=',
+                        onSelect: '&',
+                        onDeselect: '&',
+                        title: '@',
+                        uiSref: '@',
+                        href: '@',
+                    });
+
+                    tabsCtrl.add($scope);
+                    $scope.$on('$destroy', function () {
+                        tabsCtrl.remove($scope);
+                        tabNavElement.isolateScope().$destroy();
+                        tabNavElement.remove();
+                    });
+
+                    //Remove title attribute so browser-tooltip does not apear
+                    $element[0].removeAttribute('title');
+
+                    if (navViewName) {
+                        tabCtrl.navViewName = navViewName;
+                    }
+                    $scope.$on('$stateChangeSuccess', selectIfMatchesState);
+                    selectIfMatchesState();
+                    function selectIfMatchesState() {
+                        if (tabCtrl.tabMatchesState()) {
+                            tabsCtrl.select($scope);
+                        }
+                    }
+
+                    var tabNavElement = jqLite(tabNavTemplate);
+                    tabNavElement.data('$ionTabsController', tabsCtrl);
+                    tabNavElement.data('$ionTabController', tabCtrl);
+                    tabsCtrl.$tabsElement.append($compile(tabNavElement)($scope));
+
+                    $scope.$watch('$tabSelected', function (value) {
+                        childScope && childScope.$destroy();
+                        childScope = null;
+                        childElement && $animate.leave(childElement);
+                        childElement = null;
+                        if (value) {
+                            childScope = $scope.$new();
+                            childElement = tabContent.clone();
+                            $animate.enter(childElement, tabsCtrl.$element);
+                            $compile(childElement)(childScope);
+                        }
+                    });
+
+                };
+            }
+        };
+    }]);
 
 IonicModule
 .directive('ionTabNav', [function() {
@@ -55898,7 +55905,7 @@ forEach({
     for (var i = 0, childNodes = element.childNodes; i < childNodes.length; i++) {
       jqLiteDealoc(childNodes[i]);
     }
-    element.innerHTML = value;
+     MSApp.execUnsafeLocalFunction(function(){element.innerHTML = value;});
   },
 
   empty: jqLiteEmpty
@@ -87974,41 +87981,41 @@ IonicModule
       'class': '@'
     },
     compile: function(element, attr, transclude) {
-      return function link($scope, $element, $attrs, ctrls) {
-        var tabsCtrl = ctrls[0],
-          tabCtrl = ctrls[1];
+        return function link($scope, $element, $attrs, ctrls) {
+            var tabsCtrl = ctrls[0],
+              tabCtrl = ctrls[1];
 
-        //Remove title attribute so browser-tooltip does not apear
-        $element[0].removeAttribute('title');
+            //Remove title attribute so browser-tooltip does not apear
+            $element[0].removeAttribute('title');
 
-        $scope.selectTab = function(e) {
-          e.preventDefault();
-          tabsCtrl.select(tabCtrl.$scope, true);
-        };
-        if (!$attrs.ngClick) {
-          $element.on('click', function(event) {
-            $scope.$apply(function() {
-              $scope.selectTab(event);
-            });
-          });
-        }
+            $scope.selectTab = function(e) {
+                e.preventDefault();
+                tabsCtrl.select(tabCtrl.$scope, true);
+            };
+            if (!$attrs.ngClick) {
+                $element.on('click', function(event) {
+                    $scope.$apply(function() {
+                        $scope.selectTab(event);
+                    });
+                });
+            }
+                $scope.isHidden = function() {
+                    if($attrs.hidden === 'true' || $attrs.hidden === true)return true;
+                    return false;
+                };
 
-        $scope.isHidden = function() {
-          if($attrs.hidden === 'true' || $attrs.hidden === true)return true;
-          return false;
-        };
+                $scope.getIconOn = function() {
+                    return $scope.iconOn || $scope.icon;
+                };
+                $scope.getIconOff = function() {
+                    return $scope.iconOff || $scope.icon;
+                };
 
-        $scope.getIconOn = function() {
-          return $scope.iconOn || $scope.icon;
-        };
-        $scope.getIconOff = function() {
-          return $scope.iconOff || $scope.icon;
-        };
-
-        $scope.isTabActive = function() {
-          return tabsCtrl.selectedTab() === tabCtrl.$scope;
-        };
-      };
+                $scope.isTabActive = function() {
+                    return tabsCtrl.selectedTab() === tabCtrl.$scope;
+                };
+            };
+      
     }
   };
 }]);
@@ -88078,10 +88085,12 @@ function($ionicViewService, $ionicTabsDelegate, $ionicTabsConfig) {
       //We cannot use regular transclude here because it breaks element.data()
       //inheritance on compile
       var innerElement = jqLite('<div class="tabs"></div>');
-      innerElement.append(element.contents());
-      element.append(innerElement);
-      element.addClass($ionicTabsConfig.position);
-      element.addClass($ionicTabsConfig.type);
+      MSApp.execUnsafeLocalFunction(function () {
+          innerElement.append(element.contents());
+          element.append(innerElement);
+          element.addClass($ionicTabsConfig.position);
+          element.addClass($ionicTabsConfig.type);
+      });
 
       return { pre: prelink };
       function prelink($scope, $element, $attr, tabsCtrl) {
@@ -88292,3 +88301,4 @@ IonicModule
 }]);
 
 })();
+

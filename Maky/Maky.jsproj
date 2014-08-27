@@ -53,6 +53,10 @@
     <Content Include="app\View\header\headerHome.html" />
     <Content Include="app\View\home\home.css" />
     <Content Include="app\View\home\page.html" />
+    <Content Include="app\View\project\project.css" />
+    <Content Include="app\View\project\project.html" />
+    <Content Include="app\View\todo\todo.css" />
+    <Content Include="app\View\todo\todo.html" />
     <Content Include="Content\ionic.css" />
     <Content Include="Content\ionic.min.css" />
     <Content Include="default.html" />
@@ -363,7 +367,12 @@
     <Content Include="Scripts\ionic.bundle.min.js" />
     <Content Include="Scripts\ionic.js" />
     <Content Include="Scripts\ionic.min.js" />
+    <Content Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Scripts\winstore-jscompat.js" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.Phone.WinJS.2.1, Version=1.0" />
@@ -372,7 +381,6 @@
     <Folder Include="app\Controler\" />
     <Folder Include="app\View\about\" />
     <Folder Include="app\View\load\" />
-    <Folder Include="app\View\project\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below then uncomment

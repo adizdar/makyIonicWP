@@ -1,9 +1,11 @@
 ﻿<!DOCTYPE html>
-<html >
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Maky</title>
+    <!--Script to resolve dynamic html issue-->
+    <script src="Scripts/winstore-jscompat.js"></script>
 
     <!-- WinJS references -->
     <!-- At runtime, ui-themed.css resolves to ui-themed.light.css or ui-themed.dark.css
@@ -16,28 +18,23 @@
     <link href="Content/ionic.css" rel="stylesheet" />
     <link href="/css/default.css" rel="stylesheet" />
 
-    <!-- Header -->
-    <link href="app/View/header/headerHome.css" rel="stylesheet" />
-
-    <!-- Home -->
+    <!-- css -->
     <link href="app/View/home/home.css" rel="stylesheet" />
-   
+    <link href="app/View/project/project.css" rel="stylesheet" />
+    <link href="app/View/todo/todo.css" rel="stylesheet" />
+
+    <!-- Scripts -->
     <script src="Scripts/ionic.bundle.js"></script>
     <script src="/js/default.js"></script>
     <script src="app/app.js"></script>
 
 </head>
 <body class="phone" ng-app="maky">
-    
-    <div ui-view="header"> </div>
 
-    <div ui-view="default" class="ui-view-default"></div>
-    
-    <!--<ion-nav-view animation ="slide-left-right">
-    </ion-nav-viewanimation>-->
+    <ion-nav-view animation="slide-left-right" class="ui-view-default">
+    </ion-nav-view>
 
-    <footer>
 
-    </footer>
+
 </body>
 </html>
