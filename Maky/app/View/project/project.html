@@ -1,32 +1,32 @@
 ﻿<!-- A container for content, used to tell a parent ionNavBar about the current view. -->
 <!-- We use it also to trick windows phone, so we can use animation transition for pages -->
-<ion-view title="New">
-        <!-- HEADER -->
-        <ion-nav-bar class="bar-positive">
-            <ion-nav-buttons side="left">
-                <a href="#" class="button button-icon icon ion-ios7-arrow-back"></a>
-            </ion-nav-buttons>
-            <ion-nav-buttons side="right">
-                <button class="button button-icon icon ion-plus-round"></button>
-            </ion-nav-buttons>
-        </ion-nav-bar>
+<ion-view title="{{projectTitle}}" class="project" data-ng-init="init()">
+    <!-- HEADER -->
+    <ion-nav-bar class="bar-maky bar-positive">
+        <ion-nav-buttons side="left">
+            <a href="#" class="button button-icon icon ion-ios7-arrow-back"></a>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon icon ion-plus-round"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
 
-        <!-- FOOTER tab menu -->
-        <ion-tabs class="tabs-positive tabs-icon-only">
+    <!-- FOOTER tab menu -->
+    <ion-tabs class="tabs-maky tabs-positive tabs-icon-only">
 
-            <ion-tab title="Home" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline">
-                <!-- Tab 1 content -->
-            </ion-tab>
+        <ion-tab title="Home" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline">
+            <!-- Tab 1 content -->
+        </ion-tab>
 
-            <ion-tab title="About" icon-on="ion-ios7-clock" icon-off="ion-ios7-clock-outline">
-                <!-- Tab 2 content -->
-            </ion-tab>
+        <ion-tab title="About" icon-on="ion-ios7-clock" icon-off="ion-ios7-clock-outline">
+            <!-- Tab 2 content -->
+        </ion-tab>
 
-            <ion-tab title="Settings" icon-on="ion-ios7-checkmark" icon-off="ion-ios7-checkmark-outline">
-                <!-- Tab 3 content -->
-            </ion-tab>
+        <ion-tab title="Settings" icon-on="ion-ios7-checkmark" icon-off="ion-ios7-checkmark-outline">
+            <!-- Tab 3 content -->
+        </ion-tab>
 
-        </ion-tabs>
+    </ion-tabs>
 </ion-view>
 
 

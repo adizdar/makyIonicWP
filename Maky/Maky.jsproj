@@ -49,6 +49,8 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="app\app.js" />
+    <Content Include="app\Controler\ProjectCtrl.js" />
+    <Content Include="app\directive.js" />
     <Content Include="app\View\header\headerHome.css" />
     <Content Include="app\View\header\headerHome.html" />
     <Content Include="app\View\home\home.css" />
@@ -378,7 +380,7 @@
     <SDKReference Include="Microsoft.Phone.WinJS.2.1, Version=1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\Controler\" />
+    <Folder Include="app\Template\" />
     <Folder Include="app\View\about\" />
     <Folder Include="app\View\load\" />
   </ItemGroup>

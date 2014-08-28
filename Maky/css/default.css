@@ -43,3 +43,22 @@ div.ui-view-default {
     flex: 0 0 35.3333%;
     max-width: 35.33%;
 }
+
+div.popup {
+    background-color: #62a8a6;
+}
+
+    div.popup h3.popup-title {
+        color: white;
+    }
+
+    div.popup input.ng-pristine {
+        border: 2px solid #dadada;
+        border-radius: 7px;
+    }
+
+        div.popup input.ng-pristine:focus {
+            outline: none;
+            border-color: #9ecaed;
+            box-shadow: 0 0 10px #9ecaed;
+        }
