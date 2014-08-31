@@ -50,7 +50,9 @@
     </AppxManifest>
     <Content Include="app\app.js" />
     <Content Include="app\Controler\ProjectCtrl.js" />
+    <Content Include="app\Controler\TodoCtrl.js" />
     <Content Include="app\directive.js" />
+    <Content Include="app\services.js" />
     <Content Include="app\Template\popup-scrumCard.html" />
     <Content Include="app\Template\templates.js" />
     <Content Include="app\View\header\headerHome.css" />
@@ -59,6 +61,7 @@
     <Content Include="app\View\home\page.html" />
     <Content Include="app\View\project\project.css" />
     <Content Include="app\View\project\project.html" />
+    <Content Include="app\View\todo\test.html" />
     <Content Include="app\View\todo\todo.css" />
     <Content Include="app\View\todo\todo.html" />
     <Content Include="Content\ionic.css" />

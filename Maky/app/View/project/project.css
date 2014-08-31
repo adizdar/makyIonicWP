@@ -7,7 +7,7 @@
         border-color: #62a8a6;
     }
 
-    .project > .tabs-maky div:first-child {
+    .project > .tabs-maky > div:first-child {
         background-color: #62a8a6;
         border-color: #62a8a6;
     }

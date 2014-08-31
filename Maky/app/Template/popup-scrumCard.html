@@ -1,0 +1,47 @@
+﻿<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title">New Card</h1>
+        <button class="button button-clear button-primary icon ion-close-round" ng-click="scrumCardModal.hide()"></button>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <div class="list" style="padding:0;">
+            <label class="item item-input">
+                <span class="input-label">Title</span>
+                <input type="text" ng-model="card.Title">
+            </label>
+
+            <label class="item item-input" style="padding:0 2px 0 8px;">
+                <span class="input-label">Priority</span>
+                <label class="item item-radio">
+                    <input type="radio" ng-checked="true" name="group" ng-model="card.Low" value="1">
+                    <div class="item-content">
+                        1
+                    </div>
+                    <i class="radio-icon ion-checkmark"></i>
+                </label>
+
+                <label class="item item-radio">
+                    <input type="radio" name="group" ng-model="card.Medium" value="2">
+                    <div class="item-content">
+                        2
+                    </div>
+                    <i class="radio-icon ion-checkmark"></i>
+                </label>
+
+                <label class="item item-radio" >
+                    <input type="radio" name="group" ng-model="card.High" value="3">
+                    <div class="item-content">
+                        3
+                    </div>
+                    <i class="radio-icon ion-checkmark"></i>
+                </label>
+
+            </label>
+            <label class="item item-input item-stacked-label" style="padding:0 20px 0 10px;">
+                <span class="input-label">Description</span>
+                <textarea rows="5" style="white-space: pre-wrap;" ng-model="card.Description"></textarea>
+            </label>
+            <button class="button button-full button-positive" on-tap="createCard(card)">Create</button>
+        </div>
+    </ion-content>
+</ion-modal-view>

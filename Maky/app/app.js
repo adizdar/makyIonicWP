@@ -1,6 +1,6 @@
 ﻿/// <reference path="../Scripts/ionic.bundle.min.js" />
 
-var makyApp = angular.module('maky', ['ionic', 'maky.controllers', 'maky-directives'])
+angular.module('maky', ['ionic', 'maky.controllers.project', 'maky.controllers.todo', 'maky-directives', 'maky.services'])
 
 .config(function ($urlRouterProvider, $stateProvider) {
 
@@ -14,18 +14,30 @@ var makyApp = angular.module('maky', ['ionic', 'maky.controllers', 'maky-directi
 
     .state('project', {
         url: '/project',
+        abstract: true,
         templateUrl: "app/View/project/project.html",
         controller: "ProjectCtrl"
     })
 
-    .state('project.todo', {
-        url: '/todo',
-        views: {
-            '@project': {
-                templateUrl: "app/View/todo/todo.html"
+
+    //.state('project.todo', {
+    //    url: '/todo',
+    //    views: {
+    //        '@project': {
+    //            templateUrl: "app/View/todo/todo.html"
+    //        }
+    //    }
+    //})
+
+        .state('project.todo', {
+            url: '/todo',
+            views: {
+                'todo@project': {
+                    templateUrl: "app/View/todo/todo.html",
+                    controller: "TodoCtrl"
+                }
             }
-        }
-    })
+        })
 
     $urlRouterProvider.otherwise('/');
 

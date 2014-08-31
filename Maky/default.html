@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Maky</title>
+
     <!--Script to resolve dynamic html issue-->
     <script src="Scripts/winstore-jscompat.js"></script>
 
@@ -15,6 +16,7 @@
     <script src="//Microsoft.Phone.WinJS.2.1/js/ui.js"></script>
 
     <!-- Maky references -->
+    <script src="Scripts/ionic.bundle.js"></script>
     <link href="Content/ionic.css" rel="stylesheet" />
     <link href="/css/default.css" rel="stylesheet" />
 
@@ -24,14 +26,15 @@
     <link href="app/View/todo/todo.css" rel="stylesheet" />
 
     <!-- Scripts -->
-    <script src="Scripts/ionic.bundle.js"></script>
     <script src="/js/default.js"></script>
     <script src="app/app.js"></script>
     <script src="app/directive.js"></script>
     <script src="app/Template/templates.js"></script>
+    <script src="app/services.js"></script>
 
     <!-- Controllers -->
     <script src="app/Controler/ProjectCtrl.js"></script>
+    <script src="app/Controler/TodoCtrl.js"></script>
 </head>
 <body class="phone" ng-app="maky">
 
