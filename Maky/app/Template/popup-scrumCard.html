@@ -13,7 +13,7 @@
             <label class="item item-input" style="padding:0 2px 0 8px;">
                 <span class="input-label">Priority</span>
                 <label class="item item-radio">
-                    <input type="radio" ng-checked="true" name="group" ng-model="card.Low" value="1">
+                    <input type="radio" name="group" ng-model="card.Priority" value="1">
                     <div class="item-content">
                         1
                     </div>
@@ -21,7 +21,7 @@
                 </label>
 
                 <label class="item item-radio">
-                    <input type="radio" name="group" ng-model="card.Medium" value="2">
+                    <input type="radio" name="group" ng-model="card.Priority" value="2">
                     <div class="item-content">
                         2
                     </div>
@@ -29,14 +29,14 @@
                 </label>
 
                 <label class="item item-radio" >
-                    <input type="radio" name="group" ng-model="card.High" value="3">
+                    <input type="radio" name="group" ng-model="card.Priority" value="3">
                     <div class="item-content">
                         3
                     </div>
                     <i class="radio-icon ion-checkmark"></i>
                 </label>
-
             </label>
+
             <label class="item item-input item-stacked-label" style="padding:0 20px 0 10px;">
                 <span class="input-label">Description</span>
                 <textarea rows="5" style="white-space: pre-wrap;" ng-model="card.Description"></textarea>

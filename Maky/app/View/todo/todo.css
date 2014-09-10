@@ -1,3 +1,10 @@
 ﻿div.todo {
  padding-top: 10%;
 }
+
+    div.todo .left-button {
+     position: absolute;
+     top: -0.3em;
+     right: 0em;
+     bottom: 0em;
+    }

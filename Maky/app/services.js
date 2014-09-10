@@ -1,17 +1,25 @@
 ﻿angular.module('maky.services', [])
 
 .factory('newCardService', function () {
-    var _card = [];
+    var _card = {};
 
     return {
-
-        setCard: function (card) {
-            _card.push(card);
+        'set': function (card) {
+            _card =  card;
         },
 
-        getCard: function () {
+        'get' :function () {
             return _card;
         }
+
+    }
+   
+});
+
+function callBack(card) {
+    return function () {
+        return card;
     };
 
-});
+
+};

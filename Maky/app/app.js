@@ -1,6 +1,6 @@
 ﻿/// <reference path="../Scripts/ionic.bundle.min.js" />
 
-angular.module('maky', ['ionic', 'maky.controllers.project', 'maky.controllers.todo', 'maky-directives', 'maky.services'])
+angular.module('maky', ['ionic', 'maky.controllers.project', 'maky.controllers.todo', 'maky.controllers.progress', 'maky-directives', 'maky.services'])
 
 .config(function ($urlRouterProvider, $stateProvider) {
 
@@ -19,22 +19,23 @@ angular.module('maky', ['ionic', 'maky.controllers.project', 'maky.controllers.t
         controller: "ProjectCtrl"
     })
 
-
-    //.state('project.todo', {
-    //    url: '/todo',
-    //    views: {
-    //        '@project': {
-    //            templateUrl: "app/View/todo/todo.html"
-    //        }
-    //    }
-    //})
-
         .state('project.todo', {
             url: '/todo',
             views: {
                 'todo@project': {
                     templateUrl: "app/View/todo/todo.html",
                     controller: "TodoCtrl"
+                }
+            }
+        })
+
+
+        .state('project.progress', {
+            url: '/progress',
+            views: {
+                'progress@project': {
+                    templateUrl: "app/View/progress/progress.html",
+                    controller: "ProgressCtrl"
                 }
             }
         })

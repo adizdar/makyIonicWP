@@ -7,7 +7,7 @@
             <a href="#" class="button button-icon icon ion-ios7-arrow-back"></a>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <button class="button button-icon icon ion-plus-round" on-tap="scrumCardModal.show()"></button>
+            <button class="button button-icon icon ion-plus-round" on-tap="showModal()"></button>
         </ion-nav-buttons>
     </ion-nav-bar>
  
@@ -19,7 +19,7 @@
             </ion-nav-view>
         </ion-tab>
 
-        <ion-tab title="InProgress" icon-on="ion-ios7-clock" icon-off="ion-ios7-clock-outline">
+        <ion-tab title="InProgress" icon-on="ion-ios7-clock" icon-off="ion-ios7-clock-outline" href="#/project/progress">
             <ion-nav-view name="progress">
             </ion-nav-view>
         </ion-tab>
