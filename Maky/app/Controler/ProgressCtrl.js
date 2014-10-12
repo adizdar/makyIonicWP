@@ -4,7 +4,12 @@
 
     //remove card on close tap
     $scope.remove = function ($index) {
-        $scope.cards.splice($index, 1);
+        $scope.progressArray.splice($index, 1)
+    };
+
+    //move card to another page
+    $scope.moveCard = function ($index) {
+        createMovePopup($scope, $index, 'progress');
     };
 
 });

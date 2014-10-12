@@ -4,7 +4,7 @@
     <!-- HEADER -->
     <ion-nav-bar class="bar-maky bar-positive">
         <ion-nav-buttons side="left">
-            <a href="#" class="button button-icon icon ion-ios7-arrow-back"></a>
+            <button class="button button-icon icon ion-ios7-arrow-back" on-tap="goBack()"></button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
             <button class="button button-icon icon ion-plus-round" on-tap="showModal()"></button>
@@ -24,7 +24,7 @@
             </ion-nav-view>
         </ion-tab>
 
-        <ion-tab title="Done" icon-on="ion-ios7-checkmark" icon-off="ion-ios7-checkmark-outline">
+        <ion-tab title="Done" icon-on="ion-ios7-checkmark" icon-off="ion-ios7-checkmark-outline" href="#/project/done">
             <ion-nav-view name="done">
             </ion-nav-view>
         </ion-tab>

@@ -7,4 +7,10 @@
         $scope.cards.splice($index, 1);
     };
 
+    //edit card *****
+    $scope.editCard = function (index) {
+        $scope.scrumCardModal.show();
+        $scope.cards.splice(index, 1);
+    };
+
 });

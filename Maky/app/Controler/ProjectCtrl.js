@@ -1,6 +1,6 @@
 ﻿angular.module('maky.controllers.project', [])
 
-.controller('ProjectCtrl', function ($scope, $ionicPopup, $ionicModal, newCardService, $timeout) {
+.controller('ProjectCtrl', function ($scope, $ionicPopup, $ionicModal) {
 
     //to cach popUp input model, by default it is data.response
     $scope.data = {};
@@ -31,14 +31,20 @@
                         e.preventDefault();
                     } else
                         return $scope.data.response;
-
                 }
             }]
 
         }).then(function (title) {
             //add page title
             $scope.projectTitle = title;
+
+            //add fileName to locationArray
+            LocationStorage.set(title);
         });
+    };
+
+    $scope.goBack = function () {
+       
     };
 
     //create new scrum card modal
@@ -85,7 +91,7 @@
 
     //move card to another page
     $scope.moveCard = function ($index) {
-        createMovePopup($scope, $index);
+        createMovePopup($scope, $index, 'todo');
     };
-           
+
 });

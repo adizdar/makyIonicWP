@@ -1,0 +1,22 @@
+﻿<!-- EXAMPLE TEMPLATE -->
+<div class="list todo">
+    <div class="card" ng-repeat="card in cards track by $index">
+        <div class="item item-divider">
+            {{card.Title}}
+            <span style="float:right;" class="left-button">
+                <button class="button button-icon icon ion-ios7-close-empty" on-tap="remove($index)"></button>
+            </span>
+        </div>
+        <div class="item item-text-wrap">
+            {{card.Description}}
+        </div>
+        <div class="item item-divider">
+            <span style="float:left;">
+                {{card.Priority}}
+            </span>
+            <span style="float:right;">
+                <button class="button button-icon icon ion-arrow-swap left-button" on-tap="moveCard($index)"></button>
+            </span>
+        </div>
+    </div>
+</div>

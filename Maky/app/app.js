@@ -1,6 +1,11 @@
 ﻿/// <reference path="../Scripts/ionic.bundle.min.js" />
 
-angular.module('maky', ['ionic', 'maky.controllers.project', 'maky.controllers.todo', 'maky.controllers.progress', 'maky-directives', 'maky.services'])
+angular.module('maky', ['ionic',
+    'maky.controllers.home',
+    'maky.controllers.project',
+    'maky.controllers.todo',
+    'maky.controllers.progress',
+    'maky.controllers.done'])
 
 .config(function ($urlRouterProvider, $stateProvider) {
 
@@ -8,7 +13,8 @@ angular.module('maky', ['ionic', 'maky.controllers.project', 'maky.controllers.t
     $stateProvider
     .state('home', {
         url: '/',
-        templateUrl: "app/View/home/page.html"
+        templateUrl: "app/View/home/page.html",
+        controller: "HomeCtrl"
 
     })
 
@@ -39,6 +45,16 @@ angular.module('maky', ['ionic', 'maky.controllers.project', 'maky.controllers.t
                 }
             }
         })
+
+    .state('project.done', {
+        url: '/done',
+        views: {
+            'done@project': {
+                templateUrl: "app/View/Done/done.html",
+                controller: "DoneCtrl"
+            }
+        }
+    })
 
     $urlRouterProvider.otherwise('/');
 

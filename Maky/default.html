@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Maky</title>
 
-    <!--Script to resolve dynamic html issue-->
+    <!--Script to resolve dynamic html issue on WP apps-->
     <script src="Scripts/winstore-jscompat.js"></script>
 
     <!-- WinJS references -->
@@ -25,18 +25,22 @@
     <link href="app/View/project/project.css" rel="stylesheet" />
     <link href="app/View/todo/todo.css" rel="stylesheet" />
     <link href="app/View/progress/progress.css" rel="stylesheet" />
+    <link href="app/View/done/done.css" rel="stylesheet" />
 
     <!-- Scripts -->
     <script src="/js/default.js"></script>
     <script src="app/app.js"></script>
-    <script src="app/directive.js"></script>
     <script src="app/Template/templates.js"></script>
-    <script src="app/services.js"></script>
+    <script src="js/Helpers/FileSystem.js"></script>
+    <script src="js/Helpers/Location.js"></script>
 
     <!-- Controllers -->
+    <script src="app/Controler/HomeCtrl.js"></script>
     <script src="app/Controler/ProjectCtrl.js"></script>
     <script src="app/Controler/TodoCtrl.js"></script>
     <script src="app/Controler/ProgressCtrl.js"></script>
+    <script src="app/Controler/DoneCtrl.js"></script>
+
 </head>
 <body class="phone" ng-app="maky">
 

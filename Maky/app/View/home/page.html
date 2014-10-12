@@ -1,20 +1,19 @@
 ﻿<div class="home">
+    <aside class="left-border"></aside>
     <div class="ionic-logo">
-        <a href="#">
-            <img src="../../../images/ionic.png" />
-        </a>
+        <a href="#" class="button button-icon icon ion-ionic"></a>
     </div>
     <div class="logo row">
-        <img class="row" src="../../../images/logomaky.png" />
-    </div>
-    <div class="home-title row">
-        <p class="col">... scrum planner</p>
+        <img class="row" src="../../../images/logonote.png" />
     </div>
     <div class="btn-grp row">
-        <div class="col">
-            <a class="button button-full button-stable" ui-sref="project.todo">New Project</a>
-            <a class="button button-full button-stable" ui-sref="home">Load Project</a>
+        <div class="col col-center">
+            <a class="button" ui-sref="project.todo">
+                <img src="../../../images/add.png" />
+            </a>
         </div>
     </div>
+    <footer>
+        <button class="hrefLoad" on-tap="testLoad()">Load Project</button>
+    </footer>
 </div>
-

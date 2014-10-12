@@ -62,3 +62,11 @@ div.popup {
             border-color: #9ecaed;
             box-shadow: 0 0 10px #9ecaed;
         }
+
+/*Scrum card*/
+button.btn-card-footer {
+    font-size: 0.7em !important;
+    margin-top: -0.9em;
+    margin-right: -1.1em;
+}
+

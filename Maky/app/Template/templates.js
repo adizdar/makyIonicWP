@@ -1,4 +1,4 @@
-﻿function createMovePopup(scope, index) {
+﻿function createMovePopup(scope, index, currentPageId) {
 
     var scopeCtrl = scope;
 
@@ -14,21 +14,43 @@
                 {
                     text: '<b>Move</b>',
                     type: 'button-light',
+                    // ionic popup always calls then function
+                    // so we return a value and handle the rest in then fcn
+                    // outherwise btn tap would be caled two times
                     onTap: function (e) {
-                        // ionic popup always calls then function
-                        // so we return a value and handle the rest in then fcn
-                        // outherwise btn tap would be caled two times
-                        if (scopeCtrl.move.pageId === 'progress' && index !== undefined) 
-                            return scopeCtrl.progressArray;
-                        return false;
-                  
+
+                        //action object
+                        var pageId = {
+                            'todo': function () {
+                                return scopeCtrl.cards;
+                            },
+
+                            'progress': function () {
+                                return scopeCtrl.progressArray;
+                            },
+
+                            'done': function () {
+                                return scopeCtrl.doneArray;
+                            },
+
+                            undefined: function () {
+                                return false;
+                            }
+                        };
+
+                        return typeof pageId[scopeCtrl.move.pageId] === 'function' ? {
+                            'GoTo': pageId[scopeCtrl.move.pageId](),
+                            'From': pageId[currentPageId]()
+                        } : false;
+
                     }
                 }]
 
-        }).then(function (array) {
-            array && (
-            array.push(scopeCtrl.cards[index]),
-            scopeCtrl.cards.splice(index, 1)
+        }).then(function (object) {
+            //if not falsy move carde
+            object && (
+            object.GoTo.push(object.From[index]),
+            object.From.splice(index, 1)
             )
         });
     }

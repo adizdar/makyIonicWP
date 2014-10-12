@@ -1,26 +1,31 @@
-﻿<ion-view style="height: 93%; overflow-y: auto;">
+﻿<!-- Recommended, to create a directive of this file, because we use it on 3 pages -->
+<!-- But the code is not complicated and because of that i have avoid this solution -->
+<ion-view style="height: 93%; overflow-y: auto;">
     <div class="list todo">
         <div class="card" ng-repeat="card in cards track by $index">
-            <div class="item item-divider">
+            <div class="item item-divider" on-tap="editCard($index)">
                 {{card.Title}}
                 <span style="float:right;" class="left-button">
-                    <button class="button button-icon icon ion-ios7-close-empty" on-tap="remove($index)">
-                        
-                    </button>
+                    <button class="button button-icon icon ion-ios7-close-empty" on-tap="remove($index)"></button>
                 </span>
             </div>
             <div class="item item-text-wrap">
                 {{card.Description}}
             </div>
             <div class="item item-divider">
-                <span style="float:left;">
+                <!--<span style="float:left;">
                     {{card.Priority}}
                 </span>
                 <span style="float:right;">
-                    <button class="button button-icon icon ion-arrow-swap left-button" on-tap="moveCard($index)">
-                    </button>
-                </span>
+                    <button class="button button-icon icon ion-arrow-swap left-button" on-tap="moveCard($index)"></button>
+                </span>-->
+                <div class="item-button-right" style="padding:0;">
+                    {{card.Priority}}
+                    <button class="button button-icon icon ion-arrow-swap btn-card-footer" on-tap="moveCard($index)"></button>
+                </div>
+
             </div>
         </div>
+    </div>
 </ion-view>
 

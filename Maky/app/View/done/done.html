@@ -1,23 +1,25 @@
 ﻿<ion-view style="height: 93%; overflow-y: auto;">
     <div class="list todo">
-        <div class="card" ng-repeat="progress in progressArray track by $index">
+        <div class="card" ng-repeat="done in doneArray track by $index">
             <div class="item item-divider">
-                {{progress.Title}}
+                {{done.Title}}
                 <span style="float:right;" class="left-button">
                     <button class="button button-icon icon ion-ios7-close-empty" on-tap="remove($index)"></button>
                 </span>
             </div>
             <div class="item item-text-wrap">
-                {{progress.Description}}
+                {{done.Description}}
             </div>
             <div class="item item-divider">
                 <span style="float:left;">
-                    {{progress.Priority}}
+                    {{done.Priority}}
                 </span>
                 <span style="float:right;">
                     <button class="button button-icon icon ion-arrow-swap left-button" on-tap="moveCard($index)"></button>
                 </span>
             </div>
         </div>
+        </div>
 </ion-view>
+
 
