@@ -37,7 +37,7 @@
                                 return false;
                             }
                         };
-
+                        //send object to then if !falsy
                         return typeof pageId[scopeCtrl.move.pageId] === 'function' ? {
                             'GoTo': pageId[scopeCtrl.move.pageId](),
                             'From': pageId[currentPageId]()

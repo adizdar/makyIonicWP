@@ -1,0 +1,18 @@
+﻿<ion-list ng-controller="HomeCtrl"
+          show-delete="shouldShowDelete"
+          can-swipe="listCanSwipe">
+    <ion-item ng-repeat="project in projects"
+              class="item-thumbnail-left">
+
+        <img ng-src="{{item.img}}">
+        <h2>{{project.title}}</h2>
+        <ion-option-button class="button-info"
+                           ng-click="edit(item)">
+            Remove
+        </ion-option-button>
+        <ion-delete-button class="ion-minus-circled"
+                           ng-click="items.splice($index, 1)">
+        </ion-delete-button>
+
+    </ion-item>
+</ion-list>

@@ -1,109 +1,76 @@
-﻿
-div.home {
+﻿/*****Generic Classes*****/
+
+.mk-overlay {
+    background-color: black;
     height: 100%;
-    /*background: url(../../../images/bg.png) no-repeat center center;
-    background-size: cover;*/
+    opacity: 0.26;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
 }
 
-    /***LEFT BORDER***/
+.mk-body {
+    background-color: transparent;
+}
+/*****Basic Layout*****/
 
-    div.home > aside.left-border {
-        position: absolute;
-        left: 0;
-        height: 100%;
-        width: 0.5em;
-        background-color: #62a8a6;
+/*****Content*****/
+
+h1.mk-title {
+    color: white;
+    font-family: 'Merienda One', Helvetica, sans-serif;
+    font-size: 1.8em;
+    margin: 25% 15% 1.5% 15%;
+}
+.mk-sub-title {
+    color: white;
+    font-size: 1.2em;
+    margin: 1.5% 15%;
+    white-space: nowrap;
+}
+/*****Footer*****/
+
+#mk-footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+#mk-footer > .mk-footer-button {
+    background-color: #11b4d1;
+    border: none;
+    font-size: 1.3em;
+    line-height: 47px;
+    margin: 0;
+    min-height: 20px;
+    padding-top: 0.15em;
+}
+#mk-footer > .mk-footer-button.mk-light {
+    background: rgba(255, 255, 255, 0.4);
+    color: #11b4d1;
+}
+#mk-footer > .mk-footer-button.activated {
+    -webkit-animation-name: fadeOut;
+    -webkit-animation-duration: 0.2s;
+    -webkit-animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+    animation-name: fadeOut;
+    animation-timing-function: ease-in;
+}
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
     }
-
-    /*END left border*/
-
-    /***HEADER***/
-
-    div.home > div.ionic-logo {
-        position: absolute;
-        right: 0;
+    100% {
+        opacity: 0.5;
     }
-
-        div.home > div.ionic-logo > a {
-            color: #62a8a6;
-        }
-
-
-    /**END header**/
-
-    /***LOGO & TITLE***/
-    div.home > div.logo {
-        position: absolute;
-        width: 50%;
-        margin: auto;
-        top: -0.6em;
-        left: 0;
-        right: 0;
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
     }
-
-        div.home > div.logo > img {
-            border: none;
-        }
-
-    div.home > div.home-title {
-        color: white;
-        font-size: 1.8em;
-        margin: auto;
-        padding-top: 5%;
-        opacity: 0.7;
+    100% {
+        opacity: 0.5;
     }
-
-        div.home > div.home-title > p {
-            text-align: center;
-            padding-right: 0.8em;
-        }
-
-    /****END logo & title***/
-
-    /***BUTTON***/
-
-    div.home > div.btn-grp {
-        position: absolute;
-        bottom: 18%;
-        padding: 0;
-    }
-
-        div.home > div.btn-grp > div.col {
-            padding: 0;
-        }
-
-            div.home > div.btn-grp > div.col > a {
-                display: block;
-                width: 5.5em;
-                height: 5.5em;
-                line-height: 7.1em;
-                border: 2px solid #f5f5f5;
-                border-radius: 50%;
-                color: #f5f5f5;
-                text-align: center;
-                text-decoration: none;
-                background: #62a8a6;
-                box-shadow: 0px 0px 3px gray;
-                font-weight: bold;
-                margin: auto;
-            }
-
-                div.home > div.btn-grp > div.col > a > img {
-                    width: 80%;
-                }
-
-    div.home footer > button.hrefLoad {
-        border: none;
-        text-decoration: none;
-        background-color: transparent;
-        color: #9e9d9d;
-        font-size: 1.3em;
-        font-family: "Open Sans";
-        position: absolute;
-        bottom: 0.9em;
-        left: 0px;
-        right: 0px;
-        text-align: center;
-    }
-
-/***END button***/
+}

@@ -1,23 +1,17 @@
 ﻿// For an introduction to the Blank template, see the following documentation:
 // http://go.microsoft.com/fwlink/?LinkID=329104
 
-//**GLOBAL FUNCTION
-//Store file name's for custom picker
-function locationStorage () {
-    var _locations = [];
-
+var projectTitles = function () {
+    var _projects = {};
     return {
         'get': function () {
-            return _locations;
+            return _projects;
         },
-        'set': function (fileName) {
-            _locations.push(fileName);
+        'set': function (object) {
+            _projects = object;
         }
     }
 };
-
-//create reference to function, otherwise we couldn't use closure effect of saving outer functions reference
-var LocationStorage = locationStorage();
 
 (function () {
     "use strict";
@@ -27,14 +21,21 @@ var LocationStorage = locationStorage();
     app.onactivated = function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
-                // TODO: This application has been newly launched. Initialize
-                // your application here
 
-                //create location file on start if created do nothing
-                WinJS.Application.local.folder.getFileAsync('Location.txt').then(function (fileExists) {
-                }, function (fileNotExist) {
-                    WinJS.Application.local.folder.createFileAsync('Location.txt').done(function (file) {
-                    });
+                WinJS.Application.local.exists('Projects.json').done(function (isExist) {
+                    if (isExist) {
+                        // file exists, load data from Projects.json
+                        var fs = FileSystemCls();
+                        var loadPromise = fs.loadFromFileSystem('Projects');
+
+                        loadPromise.then(function (data) {
+                            debugger;
+                        });
+                    }
+                    else {
+                        // file does not exist, create Projects.json file 
+                        WinJS.Application.local.folder.createFileAsync('Projects.json', Windows.Storage.CreationCollisionOption.failIfExists);
+                    }
                 });
 
             }

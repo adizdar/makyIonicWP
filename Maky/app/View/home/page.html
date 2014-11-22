@@ -1,19 +1,16 @@
-﻿<div class="home">
-    <aside class="left-border"></aside>
-    <div class="ionic-logo">
-        <a href="#" class="button button-icon icon ion-ionic"></a>
-    </div>
-    <div class="logo row">
-        <img class="row" src="../../../images/logonote.png" />
-    </div>
-    <div class="btn-grp row">
-        <div class="col col-center">
-            <a class="button" ui-sref="project.todo">
-                <img src="../../../images/add.png" />
-            </a>
-        </div>
-    </div>
-    <footer>
-        <button class="hrefLoad" on-tap="testLoad()">Load Project</button>
-    </footer>
+﻿<div class="mk-overlay">
 </div>
+<ion-pane class="mk-body">
+    <ion-content>
+        <h1 class="mk-title">Maky</h1>
+        <p class="mk-sub-title">Lightweight scrum planner</p>
+    </ion-content>
+    <footer id="mk-footer">
+        <a class="button button-full button-positive mk-footer-button" ui-sref="project.todo">
+            New Project
+        </a>
+        <a class="button button-full button-positive mk-footer-button mk-light" on-tap="loadProject()">
+            Load
+        </a>
+    </footer>
+</ion-pane>
