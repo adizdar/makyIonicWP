@@ -1,4 +1,4 @@
-﻿angular.module('maky.controllers.todo', [])
+﻿angular.module('maky.controllers')
 
 .controller('TodoCtrl', function ($scope) {
     

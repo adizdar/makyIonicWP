@@ -50,6 +50,7 @@
     </AppxManifest>
     <Content Include="app\app.js" />
     <Content Include="app\Controler\DoneCtrl.js" />
+    <Content Include="app\Controler\FilePickerCtrl.js" />
     <Content Include="app\Controler\HomeCtrl.js" />
     <Content Include="app\Controler\ProgressCtrl.js" />
     <Content Include="app\Controler\ProjectCtrl.js" />

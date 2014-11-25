@@ -1,4 +1,4 @@
-﻿angular.module('maky.controllers.done', [])
+﻿angular.module('maky.controllers')
 
 .controller('DoneCtrl', function ($scope) {
 

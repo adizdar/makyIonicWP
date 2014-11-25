@@ -2,16 +2,26 @@
 //custom picker***EXAMPLE
 
 angular.module('maky.services', [])
-.factory('LocationService', function () {
-    var _locations = [];
+.factory('observerFactory', function ($rootScope) {
+    var _data = {};
 
     return {
-        'set': function (location) {
-            _locations.push(location);
+        'set': function (key, value) {
+            _data[key] = value;
+        },
+        'get' :function (key) {
+            return _data[key] ? _data[key] : null;
+        },
+        
+        'getAll': function () {
+            return _data ? _data : null;
         },
 
-        'get' :function () {
-            return _locations;
+        'delete': function (array) {
+            var length = array.length;
+
+            for (var i = 0; i < length; i++)
+                delete _data[array[i]];
         }
     }
 });

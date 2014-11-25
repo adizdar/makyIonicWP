@@ -1,4 +1,4 @@
-﻿angular.module('maky.controllers.progress', [])
+﻿angular.module('maky.controllers')
 
 .controller('ProgressCtrl', function ($scope) {
 

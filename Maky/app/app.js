@@ -1,14 +1,13 @@
 ﻿/// <reference path="../Scripts/ionic.bundle.min.js" />
 
-angular.module('maky', ['ionic',
-    'maky.controllers.home',
-    'maky.controllers.project',
-    'maky.controllers.todo',
-    'maky.controllers.progress',
-    'maky.controllers.done'])
+angular.module('maky.controllers', []);
+angular.module('maky', [
+    'ionic',
+    'maky.controllers',
+    'maky.services'
+])
 
 .config(function ($urlRouterProvider, $stateProvider) {
-
 
     $stateProvider
     .state('home', {
@@ -17,7 +16,8 @@ angular.module('maky', ['ionic',
         controller: "HomeCtrl"
 
     })
-
+    // it's not good practice to make tight coupling, but to save time and also in this case we have logical
+    // dependencies between Parent Ctrl & Child Ctrl
     .state('project', {
         url: '/project',
         abstract: true,

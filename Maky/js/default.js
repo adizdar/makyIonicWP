@@ -23,21 +23,11 @@ var projectTitles = function () {
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
 
                 WinJS.Application.local.exists('Projects.json').done(function (isExist) {
-                    if (isExist) {
-                        // file exists, load data from Projects.json
-                        var fs = FileSystemCls();
-                        var loadPromise = fs.loadFromFileSystem('Projects');
-
-                        loadPromise.then(function (data) {
-                            debugger;
-                        });
-                    }
-                    else {
+                    if (!isExist) {
                         // file does not exist, create Projects.json file 
                         WinJS.Application.local.folder.createFileAsync('Projects.json', Windows.Storage.CreationCollisionOption.failIfExists);
                     }
                 });
-
             }
 
             else {
