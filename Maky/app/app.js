@@ -9,6 +9,8 @@ angular.module('maky', [
 
 .config(function ($urlRouterProvider, $stateProvider) {
 
+    $urlRouterProvider.otherwise('/');
+
     $stateProvider
     .state('home', {
         url: '/',
@@ -16,8 +18,7 @@ angular.module('maky', [
         controller: "HomeCtrl"
 
     })
-    // it's not good practice to make tight coupling, but to save time and also in this case we have logical
-    // dependencies between Parent Ctrl & Child Ctrl
+
     .state('project', {
         url: '/project',
         abstract: true,
@@ -34,7 +35,6 @@ angular.module('maky', [
                 }
             }
         })
-
 
         .state('project.progress', {
             url: '/progress',
@@ -56,7 +56,6 @@ angular.module('maky', [
         }
     })
 
-    $urlRouterProvider.otherwise('/');
 
 });
 

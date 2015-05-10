@@ -3,7 +3,7 @@
 .mk-overlay {
     background-color: black;
     height: 100%;
-    opacity: 0.26;
+    opacity: 0.35;
     position: absolute;
     width: 100%;
     z-index: 1;
@@ -36,7 +36,7 @@ h1.mk-title {
     width: 100%;
 }
 #mk-footer > .mk-footer-button {
-    background-color: #11b4d1;
+    background-color: #4a87ee;
     border: none;
     font-size: 1.3em;
     line-height: 47px;
@@ -45,8 +45,9 @@ h1.mk-title {
     padding-top: 0.15em;
 }
 #mk-footer > .mk-footer-button.mk-light {
-    background: rgba(255, 255, 255, 0.4);
-    color: #11b4d1;
+    background: rgba(255, 255, 255, 0.5);
+    color: #4a87ee;
+    font-weight: bold;
 }
 #mk-footer > .mk-footer-button.activated {
     -webkit-animation-name: fadeOut;

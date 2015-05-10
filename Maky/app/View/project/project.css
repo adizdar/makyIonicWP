@@ -1,14 +1,14 @@
-﻿.project {
+﻿/*override for header & footer*/
+
+.project {
 }
-
-
     .project > .bar-maky {
-        background-color: #11b4d1;
-        border-color: #11b4d1;
+        /*background-color: #11b4d1;
+        border-color: #11b4d1;*/
     }
 
     .project > .tabs-maky > div:first-child {
-        background-color: #11b4d1;
-        border-color: #11b4d1;
+        /*background-color: #11b4d1;
+        border-color: #11b4d1;*/
     }
 
